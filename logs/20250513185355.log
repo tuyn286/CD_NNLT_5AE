@@ -1,0 +1,7 @@
+2025-05-13 18:53:55.789 INFO __main__:start:255 - Starting Pet Data Ingestion service
+2025-05-13 18:53:55.829 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-13 18:53:55.844 INFO __main__:ingest:196 - Initial run - Last processed timestamp: 1747170586000
+2025-05-13 18:53:55.846 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-13 18:53:55.849 INFO __main__:ingest:222 - Initial run - Found 50 entries to process
+2025-05-13 18:53:55.852 ERROR __main__:send_to_api:177 - Error sending bulk data to API: API URL is not set
+2025-05-13 18:53:55.854 ERROR __main__:ingest:236 - Failed to send bulk data

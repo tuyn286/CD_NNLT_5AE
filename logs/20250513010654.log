@@ -1,0 +1,8 @@
+2025-05-13 01:06:54.109 INFO __main__:run_manual_crawl:227 - Starting manual crawl...
+2025-05-13 01:06:54.109 INFO __main__:run_manual_crawl:233 - Fetching pet data manually...
+2025-05-13 01:06:54.378 INFO __main__:fetch_pet_data:149 - Successfully fetched pet data
+2025-05-13 01:06:54.381 ERROR __main__:load_pet_data:54 - JSON decode error. Backing up to data\pets_data.json.corrupted
+2025-05-13 01:06:54.388 INFO __main__:save_pet_data:100 - Successfully saved new data. Total records: 1
+2025-05-13 01:06:54.389 INFO __main__:run_manual_crawl:239 - Manual crawl successful. Data fetched and potentially saved.
+2025-05-13 01:06:54.389 INFO __main__:run_manual_crawl:248 - Closing HTTP session.
+2025-05-13 01:06:54.390 INFO __main__:run_manual_crawl:250 - Manual crawl finished.
