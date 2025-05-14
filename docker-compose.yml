@@ -1,99 +1,117 @@
-version: '3.9'
+version: "3.9"
 
 services:
-
-    testing_mysql:
-      container_name: testing_mysql
-      image: mysql:8.0.36-debian
-      restart: always
-      ports:
-        - 3309:3306
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-      volumes:
-      - ./src/init_db:/docker-entrypoint-initdb.d/:ro 
+  testing_mysql:
+    container_name: testing_mysql
+    image: mysql:8.0.36-debian
+    restart: always
+    ports:
+      - 3309:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./src/init_db:/docker-entrypoint-initdb.d/:ro
       - mysql_data:/var/lib/mysql # Sửa thành thế này
-      networks:
+    networks:
       - app_network
-      healthcheck:
-        test: ["CMD", "sh", "-c", "mysqladmin ping -h localhost -u root -proot --silent && exit 0 || exit 1"]
-        interval: 10s
-        timeout: 5s
-        retries: 5
-        start_period: 30s
-        
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "sh",
+          "-c",
+          "mysqladmin ping -h localhost -u root -proot --silent && exit 0 || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
-    db_api:
-      container_name: db_api_server
-      restart: always
-      build:
-        context: src
-        dockerfile: db_api/Dockerfile
-      ports:
-        - 8000:8000
-      volumes:
-        - ./logs:/app/logs
-        - ./configs:/app/configs
-        - ./src/db_api:/app/src/db_api
-        - ./src/config.py:/app/src/config.py # Ánh xạ config.py
-        - ./src/logger.py:/app/src/logger.py # Ánh xạ logger.py
-      depends_on:
-        testing_mysql: 
-          condition: service_healthy
-      environment:
-        DB_HOST: testing_mysql
-        DB_PORT: 3306
-        DB_USER: root
-        DB_PASSWORD: root
-        DB_NAME: pet_db
-      healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-        interval: 10s
-        timeout: 5s
-        retries: 5
-        start_period: 30s
-      networks:
+  db_api:
+    container_name: db_api_server
+    restart: always
+    build:
+      context: src
+      dockerfile: db_api/Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./logs:/app/logs
+      - ./configs:/app/configs
+      - ./src/db_api:/app/src/db_api
+      - ./src/config.py:/app/src/config.py # Ánh xạ config.py
+      - ./src/logger.py:/app/src/logger.py # Ánh xạ logger.py
+    depends_on:
+      testing_mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: testing_mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: pet_db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
       - app_network
 
-    crawl_data:
-      container_name: crawl_data_server
-      restart: always
-      build:
-        context: src
-        dockerfile: crawl_data/Dockerfile
-      ports:
-        - 8080:8080
-      volumes:
-        - ./logs:/app/logs
-        - ./configs:/app/configs  
-        - ./data:/app/data
-        - ./src/crawl_data:/app/src/crawl_data
-      environment:
-        BASE_URL: https://gateway.chotot.com/v1/public/ad-listing
-      networks:
-        - app_network
+  crawl_data:
+    container_name: crawl_data_server
+    restart: always
+    build:
+      context: src
+      dockerfile: crawl_data/Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./logs:/app/logs
+      - ./configs:/app/configs
+      - ./data:/app/data
+      - ./src/crawl_data:/app/src/crawl_data
+    environment:
+      BASE_URL: https://gateway.chotot.com/v1/public/ad-listing
+    networks:
+      - app_network
 
-    data_ingestion:
-      container_name: data_ingrestion_server
-      restart: always
-      build:
-        context: src
-        dockerfile: data_ingestion\Dockerfile
-      volumes:
-        - ./logs:/app/logs
-        - ./configs:/app/configs
-        - ./data:/app/data
-      depends_on:
-        db_api:
-          condition: service_healthy
-      networks:
-        - app_network
-      environment:
-        DB_HOST: db_api
-        DB_PORT: 8000
-        DB_API_URL: http://db_api:8000  # Thêm URL API đầy đủ
-        DATA_PATH: data
-    
+  data_ingestion:
+    container_name: data_ingrestion_server
+    restart: always
+    build:
+      context: src
+      dockerfile: data_ingestion\Dockerfile
+    volumes:
+      - ./logs:/app/logs
+      - ./configs:/app/configs
+      - ./data:/app/data
+    depends_on:
+      db_api:
+        condition: service_healthy
+    networks:
+      - app_network
+    environment:
+      DB_HOST: db_api
+      DB_PORT: 8000
+      DB_API_URL: http://db_api:8000 # Thêm URL API đầy đủ
+      DATA_PATH: data
+
+  api_gateway:
+    container_name: api_gateway
+    build:
+      context: ./api_gateway
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - crawl_data
+      - data_ingestion
+      - db_api
+    networks:
+      - app_network
+
 networks:
   app_network:
 
