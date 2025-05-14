@@ -1,0 +1,8 @@
+2025-05-13 01:05:11.214 INFO __main__:run_manual_crawl:229 - Starting manual crawl...
+2025-05-13 01:05:11.214 INFO __main__:run_manual_crawl:235 - Fetching pet data manually...
+2025-05-13 01:05:11.532 INFO __main__:fetch_pet_data:151 - Successfully fetched pet data
+2025-05-13 01:05:11.535 ERROR __main__:load_pet_data:55 - JSON decode error. Backing up to data\pets_data.json.corrupted
+2025-05-13 01:05:11.536 ERROR __main__:save_pet_data:106 - Error saving pet data: [WinError 183] Cannot create a file when that file already exists: 'data\\pets_data.json' -> 'data\\pets_data.json.corrupted'
+2025-05-13 01:05:11.536 INFO __main__:run_manual_crawl:241 - Manual crawl successful. Data fetched and potentially saved.
+2025-05-13 01:05:11.537 INFO __main__:run_manual_crawl:250 - Closing HTTP session.
+2025-05-13 01:05:11.537 INFO __main__:run_manual_crawl:252 - Manual crawl finished.

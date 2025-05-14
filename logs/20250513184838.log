@@ -1,0 +1,7 @@
+2025-05-13 18:48:38.957 INFO __main__:start:262 - Starting Pet Data Ingestion service
+2025-05-13 18:48:38.964 INFO __main__:load_pet_data:58 - Loaded 5 pet records
+2025-05-13 18:48:38.973 INFO __main__:ingest:197 - Initial run - Last processed timestamp: 0
+2025-05-13 18:48:38.973 INFO __main__:ingest:229 - Initial run - Found 100 entries to process
+2025-05-13 18:48:38.974 INFO __main__:send_to_api:161 - Sending bulk data with 100 entries
+2025-05-13 18:48:39.005 ERROR __main__:send_to_api:174 - Failed to send bulk data: 500, error: {"detail":"'date_string'"}
+2025-05-13 18:48:39.005 ERROR __main__:ingest:243 - Failed to send bulk data

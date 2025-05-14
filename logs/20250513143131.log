@@ -1,0 +1,3 @@
+2025-05-13 14:31:31.533 INFO __main__:run_manual_crawl:304 - Starting manual crawl...
+2025-05-13 14:31:31.533 ERROR __main__:run_manual_crawl:322 - An error occurred during manual crawl: 'PetCrawler' object has no attribute 'init_session'
+2025-05-13 14:31:31.534 INFO __main__:run_manual_crawl:325 - Closing HTTP session.

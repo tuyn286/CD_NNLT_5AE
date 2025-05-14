@@ -1,0 +1,8 @@
+2025-05-13 00:04:38.505 INFO __main__:run_manual_crawl:229 - Starting manual crawl...
+2025-05-13 00:04:38.521 INFO __main__:run_manual_crawl:235 - Fetching pet data manually...
+2025-05-13 00:04:38.818 INFO __main__:fetch_pet_data:151 - Successfully fetched pet data
+2025-05-13 00:04:38.826 INFO __main__:load_pet_data:47 - Loaded 1 existing records
+2025-05-13 00:04:38.838 INFO __main__:save_pet_data:102 - Successfully saved new data. Total records: 2
+2025-05-13 00:04:38.838 INFO __main__:run_manual_crawl:241 - Manual crawl successful. Data fetched and potentially saved.
+2025-05-13 00:04:38.838 INFO __main__:run_manual_crawl:250 - Closing HTTP session.
+2025-05-13 00:04:38.838 INFO __main__:run_manual_crawl:252 - Manual crawl finished.

@@ -1,0 +1,7 @@
+2025-05-13 14:26:59.321 INFO __main__:run_manual_crawl:227 - Starting manual crawl...
+2025-05-13 14:26:59.321 INFO __main__:run_manual_crawl:233 - Fetching pet data manually...
+2025-05-13 14:26:59.535 INFO __main__:fetch_pet_data:149 - Successfully fetched pet data
+2025-05-13 14:26:59.539 ERROR __main__:save_pet_data:104 - Error saving pet data: 'charmap' codec can't decode byte 0x8d in position 494: character maps to <undefined>
+2025-05-13 14:26:59.540 INFO __main__:run_manual_crawl:239 - Manual crawl successful. Data fetched and potentially saved.
+2025-05-13 14:26:59.541 INFO __main__:run_manual_crawl:248 - Closing HTTP session.
+2025-05-13 14:26:59.543 INFO __main__:run_manual_crawl:250 - Manual crawl finished.

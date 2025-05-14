@@ -1,0 +1,7 @@
+2025-05-13 23:38:32.530 INFO __main__:run_manual_crawl:209 - Starting manual crawl...
+2025-05-13 23:38:32.532 INFO __main__:run_manual_crawl:215 - Fetching pet data manually...
+2025-05-13 23:38:32.942 INFO __main__:fetch_pet_data:139 - Successfully fetched pet data
+2025-05-13 23:38:32.982 ERROR __main__:save_pet_data:90 - Error saving pet data: 'dict' object has no attribute 'ads'
+2025-05-13 23:38:32.983 INFO __main__:run_manual_crawl:221 - Manual crawl successful. Data fetched and potentially saved.
+2025-05-13 23:38:32.984 INFO __main__:run_manual_crawl:230 - Closing HTTP session.
+2025-05-13 23:38:32.985 INFO __main__:run_manual_crawl:232 - Manual crawl finished.

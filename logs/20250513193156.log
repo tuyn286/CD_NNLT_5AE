@@ -1,0 +1,61 @@
+2025-05-13 19:31:56.796 INFO __main__:start:262 - Starting Pet Data Ingestion service
+2025-05-13 19:31:56.808 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-13 19:31:56.812 INFO __main__:ingest:197 - Initial run - Last processed timestamp: 0
+2025-05-13 19:31:56.812 ERROR __main__:ingest:252 - Error during initial ingestion: 'str' object has no attribute 'get'
+2025-05-13 19:31:56.813 ERROR __main__:ingest:255 - Full traceback:
+Traceback (most recent call last):
+
+  File "src\data_ingrestion\data_ingrestion.py", line 302, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001DA10BD6D30>
+    │       └ <function run at 0x000001DA10FDA5E0>
+    └ <module 'asyncio' from 'C:\\Users\\nguye\\miniconda3\\envs\\python_course\\lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\nguye\miniconda3\envs\python_course\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x000001DA344EC8C0>
+           │    └ <function BaseEventLoop.run_until_complete at 0x000001DA12B67D30>
+           └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Users\nguye\miniconda3\envs\python_course\lib\asyncio\base_events.py", line 603, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001DA12C37160>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Users\nguye\miniconda3\envs\python_course\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+
+  File "C:\Users\nguye\miniconda3\envs\python_course\lib\asyncio\base_events.py", line 570, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001DA12B6B820>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Users\nguye\miniconda3\envs\python_course\lib\asyncio\base_events.py", line 1859, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001DA12B02B80>
+    └ <Handle <TaskWakeupMethWrapper object at 0x000001DA3452BFA0>(<Future finished result=None>)>
+
+  File "C:\Users\nguye\miniconda3\envs\python_course\lib\asyncio\events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x000001DA3452BFA0>(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x000001DA3452BFA0>(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x000001DA3452BFA0>(<Future finished result=None>)>
+
+  File "src\data_ingrestion\data_ingrestion.py", line 299, in main
+    await service.start()
+          │       └ <function DataIngrestion.start at 0x000001DA345088B0>
+          └ <__main__.DataIngrestion object at 0x000001DA344FE850>
+
+  File "src\data_ingrestion\data_ingrestion.py", line 265, in start
+    await self.ingest(is_initial_run=True)
+          │    └ <function DataIngrestion.ingest at 0x000001DA34508790>
+          └ <__main__.DataIngrestion object at 0x000001DA344FE850>
+
+> File "src\data_ingrestion\data_ingrestion.py", line 214, in ingest
+    ads_list_from_entry = entry.get("ads")
+                          └ 'total'
+
+AttributeError: 'str' object has no attribute 'get'

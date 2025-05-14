@@ -1,0 +1,8 @@
+2025-05-14 04:43:00.914 INFO __main__:start:255 - Starting Pet Data Ingestion service
+2025-05-14 04:43:00.934 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-14 04:43:00.938 INFO __main__:ingest:196 - Initial run - Last processed timestamp: 1747170586000
+2025-05-14 04:43:00.939 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-14 04:43:00.939 INFO __main__:ingest:222 - Initial run - Found 50 entries to process
+2025-05-14 04:43:00.940 INFO __main__:send_to_api:160 - Sending bulk data with 50 entries
+2025-05-14 04:43:00.956 ERROR __main__:send_to_api:173 - Failed to send bulk data: 500, error: {"detail":"(1054, \"Unknown column 'image' in 'field list'\")"}
+2025-05-14 04:43:00.957 ERROR __main__:ingest:236 - Failed to send bulk data

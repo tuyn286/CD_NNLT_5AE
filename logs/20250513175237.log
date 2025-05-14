@@ -1,0 +1,9 @@
+2025-05-13 17:52:37.259 INFO __main__:start:249 - Starting Pet Data Ingestion service
+2025-05-13 17:52:37.308 INFO __main__:load_pet_data:58 - Loaded 5 pet records
+2025-05-13 17:52:37.335 INFO __main__:ingest:199 - Initial run - Last processed timestamp: 0
+2025-05-13 17:52:37.336 ERROR __main__:filter_data:115 - Error filtering data: 'NoneType' object is not subscriptable
+2025-05-13 17:52:37.336 ERROR __main__:filter_data:115 - Error filtering data: 'NoneType' object is not subscriptable
+2025-05-13 17:52:37.336 ERROR __main__:filter_data:115 - Error filtering data: 'NoneType' object is not subscriptable
+2025-05-13 17:52:37.338 ERROR __main__:filter_data:115 - Error filtering data: 'NoneType' object is not subscriptable
+2025-05-13 17:52:37.340 ERROR __main__:filter_data:115 - Error filtering data: 'NoneType' object is not subscriptable
+2025-05-13 17:52:37.341 INFO __main__:ingest:233 - Initial run - No new data to process
