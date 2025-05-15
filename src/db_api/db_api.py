@@ -3,9 +3,9 @@ from contextlib import asynccontextmanager
 import aiomysql
 from fastapi import FastAPI, HTTPException, logger
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 import os
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 import logging
 from fastapi import FastAPI
@@ -128,7 +128,46 @@ async def insert_pet_bulk(raw_data_list: List[FilteredPetData]):
     except Exception as e:
         logger.error(f"Error bulk inserting pet data: {e}")
         raise HTTPException(status_code=500, detail=str(e))  
-        
+
+@app.get("/api/pet")
+async def get_pet_data(
+    page: int = Query(..., gt=0),
+    size: int = Query(..., gt=0, le=100),
+    filter: Optional[str] = "",
+    search: Optional[str] = ""
+):
+    """Get pet data with pagination and optional filtering/search"""
+    try:
+        conditions = []
+        values = []
+
+        if filter:
+            conditions.append("category_name = %s")
+            values.append(filter)
+        if search:
+            conditions.append("subject LIKE %s")
+            values.append(f"%{search}%")
+
+        where_clause = " AND ".join(conditions)
+        sql = "SELECT * FROM pets"
+        if where_clause:
+            sql += " WHERE " + where_clause
+        sql += " LIMIT %s OFFSET %s"
+
+        values.extend([size, (page - 1) * size])
+
+        async with pet_api.pool.acquire() as conn:
+            async with conn.cursor(aiomysql.DictCursor) as cur:
+                await cur.execute(sql, tuple(values))
+                result = await cur.fetchall()
+
+        return {
+            "message": "Data retrieved successfully",
+            "data": result
+        }
+    except Exception as e:
+        logger.error(f"Error retrieving pet data: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 # if __name__ == "__main__":
 #     import uvicorn
