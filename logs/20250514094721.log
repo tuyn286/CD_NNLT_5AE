@@ -1,0 +1,16 @@
+2025-05-14 09:47:21.354 INFO __main__:start:255 - Starting Pet Data Ingestion service
+2025-05-14 09:47:21.365 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-14 09:47:21.369 INFO __main__:ingest:196 - Initial run - Last processed timestamp: 1747238643000
+2025-05-14 09:47:21.370 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-14 09:47:21.370 INFO __main__:ingest:239 - Initial run - No new data to process
+2025-05-14 09:52:21.392 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-14 09:52:21.396 INFO __main__:ingest:198 - Checking for data newer than: 1747238643000
+2025-05-14 09:52:21.396 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-14 09:52:21.397 INFO __main__:ingest:224 - Found 23 new entries to process
+2025-05-14 09:52:21.398 INFO __main__:send_to_api:160 - Sending bulk data with 23 entries
+2025-05-14 09:52:21.425 INFO __main__:send_to_api:169 - Successfully saved 23 entries
+2025-05-14 09:52:21.428 INFO __main__:ingest:234 - Successfully processed 23 new entries
+2025-05-14 09:57:21.383 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-14 09:57:21.386 INFO __main__:ingest:198 - Checking for data newer than: 1747241194000
+2025-05-14 09:57:21.387 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-14 09:57:21.387 INFO __main__:ingest:241 - No new data to process
