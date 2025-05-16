@@ -18,16 +18,14 @@ load_dotenv()
 class DataIngrestion:
     def __init__(self):
         """Initialize DataIngestion"""
-        self.api_url = os.getenv('DB_API_URL')# port container DB_API
+        self.api_url = os.getenv('DB_API_URL')
         self.scheduler = AsyncIOScheduler()
         self.data_path = os.getenv('DATA_PATH', 'data')
         self.data_file = f"{self.data_path}/pets_data.json"
         self.processed_file = f"{self.data_path}/processed_data.json"
         self.session = None
-        
         # Create the data directory if it does not exist
         os.makedirs(self.data_path, exist_ok=True)
-        
         # Initialize files
         self._init_files()
     
@@ -39,7 +37,7 @@ class DataIngrestion:
            
     #Load data from JSON file     
     async def load_pet_data(self):
-        """Load weather data from file"""
+        """Load pet data from file"""
         lock = FileLock(f"{self.data_file}.lock")
         
         try:
@@ -80,7 +78,6 @@ class DataIngrestion:
         """
         return timestamp_ms // 1000
 
-
     #Filter data JSON
     def filter_data(self, pet_data):
         """Only filter necessary fields while preserving null values"""
@@ -106,7 +103,7 @@ class DataIngrestion:
                 "seller_name": pet_data.get("seller_info").get("full_name"),
                 "average_rating": pet_data.get("average_rating"),
                 "sold_ads": pet_data.get("seller_info").get("sold_ads"),
-                "image_url":pet_data.get("images")[0],
+                "image_url":pet_data.get("image"),
                 "category_name": pet_data.get("category_name")
             }
             return filtered_data
@@ -114,8 +111,6 @@ class DataIngrestion:
             logger.error(f"Error filtering data: {e}")
             return None
         
-    
-    
     async def _load_processed_data(self):
         """
         Load the last processed timestamp from file
@@ -128,7 +123,6 @@ class DataIngrestion:
             logger.error(f"Error loading processed data: {e}")
             return {"last_processed_dt": 0}
     
-    
     async def _save_processed_data(self, data: dict):
         """
         Save the last processed timestamp to file
@@ -140,7 +134,6 @@ class DataIngrestion:
         except Exception as e:
             logger.error(f"Error saving processed data: {e}")
             raise
-    
     
     #CALL API DB
     async def send_to_api(self, raw_data_list: list):
@@ -160,7 +153,7 @@ class DataIngrestion:
             logger.info(f"Sending bulk data with {len(raw_data_list)} entries")
 
             async with self.session.post(
-                f"{self.api_url}/api/pet/bulk",
+                f"{self.api_url}/db/api/pet/bulk",
                 json=raw_data_list,
                 headers=headers
             ) as response:
@@ -177,7 +170,7 @@ class DataIngrestion:
             logger.error(f"Error sending bulk data to API: {e}")
             return False
         
-    #Ingrest
+    #Ingest
     async def ingest(self, is_initial_run: bool = False):
         try:
             pet_data = await self.load_pet_data()
@@ -247,8 +240,6 @@ class DataIngrestion:
                 logger.error(f"Error during scheduled ingestion: {e}")
             logger.exception("Full traceback:")
         
-        
-        
     async def start(self):
         """Start the Pet Data Ingestion service"""
         try:
@@ -257,27 +248,24 @@ class DataIngrestion:
             # First run - process all existing data
             await self.ingest(is_initial_run=True)
             
-            # Schedule future runs 30 minutes
+            # Schedule future runs 2 minutes
+            logger.info("Adding scheduled job for pet ingestion every 2 minutes")
             self.scheduler.add_job(
                 self.ingest,
                 'interval',
-                minutes=5,
-                id='weather_data_ingestion'
+                minutes=2,
+                id='pet_data_ingestion'
             )
             
-            self.scheduler.start()
+            self.scheduler.start(paused=False)
 
-            try:
-                while True:
-                    await asyncio.sleep(1)
-            except KeyboardInterrupt:
-                await self.stop()
-
+            # Đảm bảo giữ scheduler chạy bằng asyncio event loop chuẩn
+            await asyncio.Event().wait()
+            
         except Exception as e:
             logger.error(f"Error starting service: {e}")
             await self.stop()
             
-    
     async def stop(self):
         try:
             self.scheduler.shutdown()
@@ -291,8 +279,6 @@ async def main():
     service = DataIngrestion()
     await service.start()
 
-# if __name__ == "__main__":
-#     asyncio.run(main()) 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     try:

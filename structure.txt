@@ -1,0 +1,18 @@
+
+├── configs
+├── data
+├── logs
+├── nginx
+│   ├── conf.d
+│   └── logs
+└── src
+    ├── crawl_data/
+    ├── data_ingestion/
+    ├── db_api/
+    ├── front_end
+    │   ├── .vscode
+    │   └── src
+    │       ├── components/
+    │       ├── router/
+    │       └── views/
+    └── init_db/

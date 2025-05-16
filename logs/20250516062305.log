@@ -1,0 +1,49 @@
+2025-05-16 06:23:06.019 INFO __main__:start:255 - Starting Pet Data Ingestion service
+2025-05-16 06:23:06.040 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 06:23:06.045 INFO __main__:ingest:196 - Initial run - Last processed timestamp: 1747401304000
+2025-05-16 06:23:06.045 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 06:23:06.046 INFO __main__:ingest:222 - Initial run - Found 1 entries to process
+2025-05-16 06:23:06.046 INFO __main__:send_to_api:160 - Sending bulk data with 1 entries
+2025-05-16 06:23:06.080 INFO __main__:send_to_api:169 - Successfully saved 1 entries
+2025-05-16 06:23:06.085 INFO __main__:ingest:232 - Initial run - Successfully processed 1 entries
+2025-05-16 06:23:06.085 INFO __main__:start:261 - Adding scheduled job for pet ingestion every 2 minutes
+2025-05-16 06:25:06.188 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 06:25:06.194 INFO __main__:ingest:198 - Checking for data newer than: 1747401546000
+2025-05-16 06:25:06.195 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 06:25:06.196 INFO __main__:ingest:224 - Found 1 new entries to process
+2025-05-16 06:25:06.198 INFO __main__:send_to_api:160 - Sending bulk data with 1 entries
+2025-05-16 06:25:06.210 INFO __main__:send_to_api:169 - Successfully saved 1 entries
+2025-05-16 06:25:06.216 INFO __main__:ingest:234 - Successfully processed 1 new entries
+2025-05-16 06:27:06.200 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 06:27:06.208 INFO __main__:ingest:198 - Checking for data newer than: 1747401732000
+2025-05-16 06:27:06.209 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 06:27:06.210 INFO __main__:ingest:224 - Found 1 new entries to process
+2025-05-16 06:27:06.212 INFO __main__:send_to_api:160 - Sending bulk data with 1 entries
+2025-05-16 06:27:06.237 INFO __main__:send_to_api:169 - Successfully saved 1 entries
+2025-05-16 06:27:06.247 INFO __main__:ingest:234 - Successfully processed 1 new entries
+2025-05-16 06:29:06.200 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 06:29:06.209 INFO __main__:ingest:198 - Checking for data newer than: 1747401885000
+2025-05-16 06:29:06.210 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 06:29:06.211 INFO __main__:ingest:241 - No new data to process
+2025-05-16 06:31:06.258 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 06:31:06.272 INFO __main__:ingest:198 - Checking for data newer than: 1747401885000
+2025-05-16 06:31:06.272 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 06:31:06.275 INFO __main__:ingest:224 - Found 5 new entries to process
+2025-05-16 06:31:06.277 INFO __main__:send_to_api:160 - Sending bulk data with 5 entries
+2025-05-16 06:31:06.373 INFO __main__:send_to_api:169 - Successfully saved 5 entries
+2025-05-16 06:31:06.382 INFO __main__:ingest:234 - Successfully processed 5 new entries
+2025-05-16 06:33:06.226 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 06:33:06.232 INFO __main__:ingest:198 - Checking for data newer than: 1747402194000
+2025-05-16 06:33:06.232 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 06:33:06.233 INFO __main__:ingest:241 - No new data to process
+2025-05-16 06:35:06.204 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 06:35:06.212 INFO __main__:ingest:198 - Checking for data newer than: 1747402194000
+2025-05-16 06:35:06.213 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 06:35:06.215 INFO __main__:ingest:224 - Found 5 new entries to process
+2025-05-16 06:35:06.217 INFO __main__:send_to_api:160 - Sending bulk data with 5 entries
+2025-05-16 06:35:06.252 INFO __main__:send_to_api:169 - Successfully saved 5 entries
+2025-05-16 06:35:06.259 INFO __main__:ingest:234 - Successfully processed 5 new entries
+2025-05-16 06:37:06.153 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 06:37:06.160 INFO __main__:ingest:198 - Checking for data newer than: 1747402483000
+2025-05-16 06:37:06.161 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 06:37:06.163 INFO __main__:ingest:241 - No new data to process
