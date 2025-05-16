@@ -3,19 +3,19 @@ from contextlib import asynccontextmanager
 import aiomysql
 from fastapi import FastAPI, HTTPException, logger
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 import os
-from typing import List, Dict, Any, Optional
-
+from typing import List, Dict, Any
 import logging
 from fastapi import FastAPI
-
+from fastapi import Query
+from typing import Optional
 from src.db_api.pet import FilteredPetData
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)  
 
-app = FastAPI()
+app = FastAPI(root_path="/db")
 
 app.add_middleware(
     CORSMiddleware,
@@ -52,12 +52,6 @@ class PetAPI:
         if not self.pool:
             # Connect MySQL
             self.pool = await aiomysql.create_pool(
-                # host=os.getenv('DB_HOST'),
-                # port=int(os.getenv('3309')),
-                # user=os.getenv('root'),
-                # password=os.getenv('root'),
-                # db=os.getenv('local_db'),
-                # autocommit=True
                 host=os.getenv('DB_HOST', '127.0.0.1'),
                 port=int(os.getenv('DB_PORT', 3306)),
                 user=os.getenv('DB_USER', 'root'),
@@ -73,7 +67,6 @@ class PetAPI:
             await self.pool.wait_closed()
             self.pool = None
             logger.info("MySQL connection pool closed")
-
 
 @app.get("/health")
 async def health_check():
@@ -103,22 +96,23 @@ async def insert_pet_bulk(raw_data_list: List[FilteredPetData]):
                     average_rating, sold_ads, image_url, category_name)
                     VALUES (%(id)s, %(list_time)s, %(list_time_sec)s, %(subject)s, %(param_value)s,
                             %(price_string)s, %(price)s, %(area_name)s, %(date_string)s, %(seller_name)s,
-                            %(average_rating)s, %(sold_ads)s, %(image_url)s, %(category_name)s)
+                            %(average_rating)s, %(sold_ads)s, %(image_url)s, %(category_name)s) AS new
                     ON DUPLICATE KEY UPDATE
-                        list_time = VALUES(list_time),
-                        list_time_sec = VALUES(list_time_sec),
-                        subject = VALUES(subject),
-                        param_value = VALUES(param_value),
-                        price_string = VALUES(price_string),
-                        price = VALUES(price),
-                        area_name = VALUES(area_name),
-                        date_string = VALUES(date_string),
-                        seller_name = VALUES(seller_name),
-                        average_rating = VALUES(average_rating),
-                        sold_ads = VALUES(sold_ads),
-                        image_url = VALUES(image_url),
-                        category_name = VALUES(category_name)
+                        list_time = new.list_time,
+                        list_time_sec = new.list_time_sec,
+                        subject = new.subject,
+                        param_value = new.param_value,
+                        price_string = new.price_string,
+                        price = new.price,
+                        area_name = new.area_name,
+                        date_string = new.date_string,
+                        seller_name = new.seller_name,
+                        average_rating = new.average_rating,
+                        sold_ads = new.sold_ads,
+                        image_url = new.image_url,
+                        category_name = new.category_name
                 """, [data.model_dump() for data in raw_data_list])
+
                 
                 return {
                     "message": "Bulk insert successful",
@@ -128,7 +122,8 @@ async def insert_pet_bulk(raw_data_list: List[FilteredPetData]):
     except Exception as e:
         logger.error(f"Error bulk inserting pet data: {e}")
         raise HTTPException(status_code=500, detail=str(e))  
-
+  
+  #Search API
 @app.get("/api/pet")
 async def get_pet_data(
     page: int = Query(..., gt=0),
@@ -168,7 +163,3 @@ async def get_pet_data(
     except Exception as e:
         logger.error(f"Error retrieving pet data: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
-
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run(app, host="127.0.0.1", port=8000)

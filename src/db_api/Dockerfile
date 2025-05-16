@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install system dependencies like curl first
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
-RUN pip install aiomysql pymysql cryptography uvicorn fastapi requests
+RUN pip install aiomysql pymysql cryptography uvicorn fastapi requests typing
 
 # Copy shared modules
 COPY config.py /app/src/

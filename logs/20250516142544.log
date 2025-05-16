@@ -1,0 +1,24 @@
+2025-05-16 14:25:44.895 INFO __main__:start:246 - Starting Pet Data Ingestion service
+2025-05-16 14:25:44.940 INFO __main__:load_pet_data:56 - Loaded 2 pet records
+2025-05-16 14:25:44.957 INFO __main__:ingest:189 - Initial run - Last processed timestamp: 1747426960000
+2025-05-16 14:25:44.958 INFO __main__:ingest:205 - Found 50 ad objects in the 'ads' list.
+2025-05-16 14:25:44.959 INFO __main__:ingest:232 - Initial run - No new data to process
+2025-05-16 14:25:44.960 INFO __main__:start:252 - Adding scheduled job for pet ingestion every 2 minutes
+2025-05-16 14:27:44.978 INFO __main__:load_pet_data:56 - Loaded 2 pet records
+2025-05-16 14:27:44.985 INFO __main__:ingest:191 - Checking for data newer than: 1747426960000
+2025-05-16 14:27:44.986 INFO __main__:ingest:205 - Found 50 ad objects in the 'ads' list.
+2025-05-16 14:27:44.987 INFO __main__:ingest:217 - Found 30 new entries to process
+2025-05-16 14:27:44.989 INFO __main__:send_to_api:153 - Sending bulk data with 30 entries
+2025-05-16 14:27:45.159 INFO __main__:send_to_api:162 - Successfully saved 30 entries
+2025-05-16 14:27:45.163 INFO __main__:ingest:227 - Successfully processed 30 new entries
+2025-05-16 14:29:45.054 INFO __main__:load_pet_data:56 - Loaded 2 pet records
+2025-05-16 14:29:45.061 INFO __main__:ingest:191 - Checking for data newer than: 1747430706000
+2025-05-16 14:29:45.061 INFO __main__:ingest:205 - Found 50 ad objects in the 'ads' list.
+2025-05-16 14:29:45.062 INFO __main__:ingest:234 - No new data to process
+2025-05-16 14:31:45.068 INFO __main__:load_pet_data:56 - Loaded 2 pet records
+2025-05-16 14:31:45.073 INFO __main__:ingest:191 - Checking for data newer than: 1747430706000
+2025-05-16 14:31:45.074 INFO __main__:ingest:205 - Found 50 ad objects in the 'ads' list.
+2025-05-16 14:31:45.075 INFO __main__:ingest:217 - Found 1 new entries to process
+2025-05-16 14:31:45.075 INFO __main__:send_to_api:153 - Sending bulk data with 1 entries
+2025-05-16 14:31:45.094 INFO __main__:send_to_api:162 - Successfully saved 1 entries
+2025-05-16 14:31:45.099 INFO __main__:ingest:227 - Successfully processed 1 new entries

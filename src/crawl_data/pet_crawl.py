@@ -20,7 +20,17 @@ load_dotenv()
 # Load constants from environment variables
 BASE_URL = os.getenv('BASE_UR',"https://gateway.chotot.com/v1/public/ad-listing")
 
-app = FastAPI()
+app = FastAPI(root_path="/crawl")
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"], 
+)
 
 class PetCrawler:
     def __init__(self):
@@ -28,9 +38,9 @@ class PetCrawler:
         self.data_dir = "data"
         self.data_file = os.path.join(self.data_dir, "pets_data.json")
         self.session = None
-        self._init_data_file() # Create data directory if it does not exist, # Create JSON file if it does not exist
-    
+        self._init_data_file() 
         
+    # Create data directory if it does not exist, # Create JSON file if it does not exist    
     def _init_data_file(self):
         """Initialize data directory and file if they don't exist"""
         # Create data directory if it does not exist
@@ -101,8 +111,6 @@ class PetCrawler:
                 logger.info("Restored from backup file")
             return False
     
-    
-    
     #Open HTTP Connection CALL API
     async def init_session(self):
         """Initialize aiohttp session"""
@@ -124,15 +132,13 @@ class PetCrawler:
                 await self.init_session()
                 # Cấu hình params cho API Chợ Tốt
                 params = {
-                    "region_v2": 13000,     # Mã vùng
-                    "cg": 12000,            # Danh mục chung
-                    "f": "c",               # Trạng thái
-                    "st": "s,k",            # Loại tin đăng
+                    "region_v2": 13000,     
+                    "cg": 12000,            
+                    "f": "c",               
+                    "st": "s,k",            
                     "limit":200,
                     "w": 1,
-                    # "include_expired_ads":"true",                 
-                    # "fingerprint": "29053124", # Dấu vân tay
-                    "key_param_included": "true"    # Bao gồm các tham số chính
+                    "key_param_included": "true"    
                 }
 
                 async with self.session.get(BASE_URL, params=params) as response:
@@ -166,6 +172,7 @@ class PetCrawler:
         
     async def daily_job(self):
         """Job to fetch current pet data every x hour"""
+        logger.info(f"Running scheduled job at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         try:
             data = await self.fetch_pet_data()
             if data:
@@ -183,11 +190,11 @@ class PetCrawler:
         # Thêm job mới
         self.scheduler.add_job(
             self.daily_job,
-            CronTrigger(hour='*/2', minute='5',timezone="Asia/Ho_Chi_Minh"),   # Run at minute 5 of every time call
+            CronTrigger(minute='*/3',timezone="Asia/Ho_Chi_Minh"),   # Run at minute 3 of every time call
             id='pet_crawler_job', # Đặt ID rõ ràng hơn
             replace_existing=True # Ghi đè job cũ nếu ID trùng
         )
-        logger.info("Added Pet Crawler job (every 2 hours at xx:05) to scheduler")
+        logger.info("Added Pet Crawler job (every 3 minute) to scheduler")
 
         logger.info("Starting the scheduler...")
         self.scheduler.start()
@@ -243,12 +250,7 @@ async def startup_event():
     crawler = PetCrawler()
     asyncio.create_task(crawler.start())
 
-@app.get("/manual-crawl")
+@app.get("/manual_crawl")
 async def manual_crawl():
     await run_manual_crawl()
     return {"message": "Manual crawl started"}
-
-# ----- Run -----
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run("pet_crawl:app", host="0.0.0.0", port=8080, reload=True)
