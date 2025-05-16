@@ -1,0 +1,23 @@
+2025-05-16 12:36:56.897 INFO src.crawl_data.pet_crawl:start_scheduler:190 - Added Pet Crawler job (every 2 hours at xx:05) to scheduler
+2025-05-16 12:36:56.897 INFO src.crawl_data.pet_crawl:start_scheduler:192 - Starting the scheduler...
+2025-05-16 12:37:22.311 INFO src.crawl_data.pet_crawl:run_manual_crawl:216 - Starting manual crawl...
+2025-05-16 12:37:22.311 INFO src.crawl_data.pet_crawl:run_manual_crawl:222 - Fetching pet data manually...
+2025-05-16 12:37:23.806 INFO src.crawl_data.pet_crawl:fetch_pet_data:146 - Successfully fetched pet data
+2025-05-16 12:37:23.827 INFO src.crawl_data.pet_crawl:save_pet_data:93 - Successfully saved new data. Total records: 50
+2025-05-16 12:37:23.829 INFO src.crawl_data.pet_crawl:run_manual_crawl:227 - Manual crawl successful. Data fetched and potentially saved.
+2025-05-16 12:37:23.830 INFO src.crawl_data.pet_crawl:run_manual_crawl:236 - Closing HTTP session.
+2025-05-16 12:37:23.831 INFO src.crawl_data.pet_crawl:run_manual_crawl:238 - Manual crawl finished.
+2025-05-16 12:38:04.658 INFO src.crawl_data.pet_crawl:run_manual_crawl:216 - Starting manual crawl...
+2025-05-16 12:38:04.658 INFO src.crawl_data.pet_crawl:run_manual_crawl:222 - Fetching pet data manually...
+2025-05-16 12:38:05.089 INFO src.crawl_data.pet_crawl:fetch_pet_data:146 - Successfully fetched pet data
+2025-05-16 12:38:05.111 INFO src.crawl_data.pet_crawl:save_pet_data:93 - Successfully saved new data. Total records: 50
+2025-05-16 12:38:05.112 INFO src.crawl_data.pet_crawl:run_manual_crawl:227 - Manual crawl successful. Data fetched and potentially saved.
+2025-05-16 12:38:05.112 INFO src.crawl_data.pet_crawl:run_manual_crawl:236 - Closing HTTP session.
+2025-05-16 12:38:05.113 INFO src.crawl_data.pet_crawl:run_manual_crawl:238 - Manual crawl finished.
+2025-05-16 12:38:13.282 INFO src.crawl_data.pet_crawl:run_manual_crawl:216 - Starting manual crawl...
+2025-05-16 12:38:13.282 INFO src.crawl_data.pet_crawl:run_manual_crawl:222 - Fetching pet data manually...
+2025-05-16 12:38:13.567 INFO src.crawl_data.pet_crawl:fetch_pet_data:146 - Successfully fetched pet data
+2025-05-16 12:38:13.586 INFO src.crawl_data.pet_crawl:save_pet_data:93 - Successfully saved new data. Total records: 50
+2025-05-16 12:38:13.587 INFO src.crawl_data.pet_crawl:run_manual_crawl:227 - Manual crawl successful. Data fetched and potentially saved.
+2025-05-16 12:38:13.587 INFO src.crawl_data.pet_crawl:run_manual_crawl:236 - Closing HTTP session.
+2025-05-16 12:38:13.588 INFO src.crawl_data.pet_crawl:run_manual_crawl:238 - Manual crawl finished.

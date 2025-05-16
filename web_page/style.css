@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.main-header {
+    width: 100%;
+    background: #ffba00;
+    padding: 24px 0 18px 0;
+    box-sizing: border-box;
+}
+
+.header-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.logo {
+    height: 48px;
+    width: auto;
+    display: block;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    background: #ffba00;
+    border-radius: 6px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 4px 0 0 4px;
+    background: #fff;
+    color: #333;
+}
+
+.search-bar button {
+    background: #ff9800;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    padding: 0 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.search-bar button:hover {
+    background: #fb8c00;
+}
+
+.search-icon {
+    font-size: 18px;
+    color: #fff;
+}
+.pet-card {
+    display: flex;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    padding: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+    position: relative;
+}
+.pet-image img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+.pet-info {
+    flex: 1;
+    margin-left: 18px;
+}
+.pet-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #222;
+}
+.pet-desc {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+.pet-price {
+    color: #e53935;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+.pet-meta {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.pet-label {
+    background: #ffe082;
+    color: #bfa100;
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-left: 8px;
+    font-size: 13px;
+}
+.pet-shop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: #444;
+    margin-top: 4px;
+}
+.shop-icon {
+    font-size: 18px;
+}
+.shop-name {
+    font-weight: bold;
+}
+.shop-rating {
+    color: #ffb300;
+    font-weight: bold;
+}
+.star {
+    color: #ffb300;
+    font-size: 16px;
+}
+.shop-sold {
+    color: #888;
+    font-size: 14px;
+}
+.pet-fav {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+}
+.fav-icon {
+    font-size: 22px;
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.fav-icon:hover {
+    color: #e53935;
+}

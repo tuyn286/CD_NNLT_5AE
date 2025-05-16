@@ -82,7 +82,7 @@ services:
     restart: always
     build:
       context: src
-      dockerfile: data_ingestion\Dockerfile
+      dockerfile: data_ingestion/Dockerfile
     volumes:
       - ./logs:/app/logs
       - ./configs:/app/configs
@@ -105,6 +105,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    volumes:
+    - ./web_page:/usr/share/nginx/html:ro
     depends_on:
       - crawl_data
       - data_ingestion

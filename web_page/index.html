@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chợ Tốt Thú Cưng</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main-header">
+        <div class="header-content">
+            <img src="logo-chotot.png" alt="Chợ Tốt" class="logo">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm trên Chợ Tốt">
+                <button id="searchBtn">
+                    <span class="search-icon">&#128269;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Các loại thú cưng, vật nuôi TPHCM giá tốt</h1>
+        <div class="controls">
+            <!-- <div class="search-bar">
+                <input type="text" id="searchInput"
+                    placeholder="Tìm kiếm sản phẩm trên Chợ Tốt">
+                <button id="searchBtn">
+                    <span class="search-icon">&#128269;</span>
+                </button>
+            </div> -->
+            <select id="categoryFilter">
+                <option value="">Tất cả danh mục</option>
+            </select>
+            <select id="pageSize">
+                <option value="5">5 / trang</option>
+                <option value="10" selected>10 / trang</option>
+                <option value="20">20 / trang</option>
+            </select>
+            <button id="searchBtn">Tìm kiếm</button>
+        </div>
+        <div id="petList" class="pet-list"></div>
+        <div id="pagination" class="pagination"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

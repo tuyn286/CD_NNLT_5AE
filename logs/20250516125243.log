@@ -1,0 +1,8 @@
+2025-05-16 12:52:43.139 INFO __main__:start:255 - Starting Pet Data Ingestion service
+2025-05-16 12:52:43.151 INFO __main__:load_pet_data:58 - Loaded 2 pet records
+2025-05-16 12:52:43.154 INFO __main__:ingest:196 - Initial run - Last processed timestamp: 1747424459000
+2025-05-16 12:52:43.154 INFO __main__:ingest:212 - Found 50 ad objects in the 'ads' list.
+2025-05-16 12:52:43.155 INFO __main__:ingest:222 - Initial run - Found 1 entries to process
+2025-05-16 12:52:43.156 INFO __main__:send_to_api:160 - Sending bulk data with 1 entries
+2025-05-16 12:52:43.217 INFO __main__:send_to_api:169 - Successfully saved 1 entries
+2025-05-16 12:52:43.221 INFO __main__:ingest:232 - Initial run - Successfully processed 1 entries
