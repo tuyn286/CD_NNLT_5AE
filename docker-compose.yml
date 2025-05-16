@@ -97,20 +97,33 @@ services:
       DB_PORT: 8000
       DB_API_URL: http://db_api:8000 # Thêm URL API đầy đủ
       DATA_PATH: data
-
-  api_gateway:
-    container_name: api_gateway
+  frontend:
+    container_name: frontend
     build:
-      context: ./api_gateway
+      context: ./front_end
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://db_api:8000
     depends_on:
-      - crawl_data
-      - data_ingestion
       - db_api
     networks:
       - app_network
+
+  # api_gateway:
+  #   container_name: api_gateway
+  #   build:
+  #     context: ./api_gateway
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - crawl_data
+  #     - data_ingestion
+  #     - db_api
+  #   networks:
+  #     - app_network
 
 networks:
   app_network:
